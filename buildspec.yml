@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Installing HTML validator..."
+      - npm install -g html-validate
+
+  pre_build:
+    commands:
+      - echo "Checking required files exist..."
+      - test -f index.html || (echo "ERROR: index.html missing" && exit 1)
+      - test -f style.css || (echo "ERROR: style.css missing" && exit 1)
+
+  build:
+    commands:
+      - echo "Validating HTML..."
+      - html-validate index.html || (echo "ERROR: HTML validation failed" && exit 1)
+      - echo "Build validation passed."
+
+artifacts:
+  files:
+    - index.html
+    - style.css
+  discard-paths: no

@@ -1,0 +1,17 @@
+version: 0.2
+
+# Deploy stage.
+# Takes the validated artefact from the Build stage, syncs it to the
+# site's S3 bucket, and invalidates the CloudFront cache so the change
+# is visible immediately rather than waiting out the cache TTL.
+# SITE_BUCKET and CLOUDFRONT_DISTRIBUTION_ID are injected as environment
+# variables from Terraform (see terraform/codebuild.tf).
+
+phases:
+  build:
+    commands:
+      - echo "Deploying to S3 bucket $SITE_BUCKET..."
+      - aws s3 sync . s3://$SITE_BUCKET --delete --exclude "buildspec.yml" --exclude "deploy-buildspec.yml"
+      - echo "Invalidating CloudFront cache..."
+      - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+      - echo "Deploy complete."
