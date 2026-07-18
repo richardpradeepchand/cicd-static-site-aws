@@ -27,4 +27,5 @@ artifacts:
   files:
     - index.html
     - style.css
+    - deploy-buildspec.yml
   discard-paths: no
