@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CI/CD Pipeline Demo Site</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Automated CI/CD Pipeline Demo</h1>
+    <p class="subtitle">Deployed via AWS CodePipeline &middot; Provisioned with Terraform</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>About this site</h2>
+      <p>
+        This static website is the deployment target for an automated CI/CD pipeline
+        built on AWS CodePipeline, CodeBuild, S3, and CloudFront. Infrastructure is
+        provisioned using Terraform, and pipeline execution is monitored using
+        Amazon CloudWatch.
+      </p>
+    </section>
+
+    <section>
+      <h2>Deployment info</h2>
+      <ul>
+        <li>Source: GitHub</li>
+        <li>Build: AWS CodeBuild</li>
+        <li>Hosting: Amazon S3 (static website hosting)</li>
+        <li>CDN: Amazon CloudFront</li>
+        <li>Monitoring: Amazon CloudWatch</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Version marker: v1</p>
+  </footer>
+</body>
+</html>
