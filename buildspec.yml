@@ -1,5 +1,10 @@
 version: 0.2
 
+# Build/validate stage.
+# For a static HTML/CSS site there's no compilation step, so "build"
+# here means validation: confirming required files exist and are
+# well-formed, then packaging them as the artefact for the deploy stage.
+
 phases:
   install:
     commands:
@@ -9,13 +14,13 @@ phases:
   pre_build:
     commands:
       - echo "Checking required files exist..."
-      - test -f index.html || (echo "ERROR: index.html missing" && exit 1)
-      - test -f style.css || (echo "ERROR: style.css missing" && exit 1)
+      - 'test -f index.html || (echo "ERROR: index.html missing" && exit 1)'
+      - 'test -f style.css || (echo "ERROR: style.css missing" && exit 1)'
 
   build:
     commands:
       - echo "Validating HTML..."
-      - html-validate index.html || (echo "ERROR: HTML validation failed" && exit 1)
+      - 'html-validate index.html || (echo "ERROR: HTML validation failed" && exit 1)'
       - echo "Build validation passed."
 
 artifacts:
